@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeoCity - Loading Screen</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Particle Background Canvas -->
+    <canvas id="particles-canvas"></canvas>
+    <div class="container">
+        <!-- Hero / Title Panel -->
+        <section class="panel hero-panel">
+            <h1 class="main-title">NEOCITY</h1>
+            <p class="subtitle">A custom Garry's Mod city gamemode</p>
+            <span class="badge">Work in Progress</span>
+        </section>
+
+        <!-- Grid Layout for Main Content -->
+        <div class="content-grid">
+            <!-- Left Column -->
+            <div class="grid-column">
+                <!-- What is NeoCity? Panel -->
+                <section class="panel">
+                    <h2>What is NeoCity?</h2>
+                    <p class="description">
+                        NeoCity is a next-generation Garry's Mod city roleplay gamemode built from the ground up with modern systems and custom mechanics. Our goal is to create a living, breathing city where every interaction feels immersive and adrenaline-packed. Weapons and ammo are expensive and hard to buy, and a player can kill you for them if he catches you slipping.
+                    </p>
+                    <h3 class="section-subheading">Core Features</h3>
+                    <ul class="feature-list">
+                        <li>✓ Persistent economy & banking — Earn, spend, save, and build wealth across play sessions</li>
+                        <li>✓ Safe zones (WIP)</li>
+                        <li>✓ Faction system with dynamic growth — Players and NPCs belong to evolving factions</li>
+                        <li>✓ Body looting — Kill players to loot them</li>
+                        <li>✓ Custom NPCs & AI behavior — Advanced NPCs powered by bespoke logic</li>
+                        <li>✓ Deep inventory & item systems — Modular inventory, holsters, containers, lootables</li>
+                        <li>✓ Player-driven city development — Businesses, crime, trading all feed into city growth</li>
+                        <li>✓ Modern UI & immersive design — Clean menus, polished HUDs, sci-fi visual identity</li>
+                    </ul>
+                    <h3 class="section-subheading">The Vision</h3>
+                    <p class="description vision-text">
+                        NeoCity isn't just another RP server — it's a lawless, dog-eats-dog dystopian hellhole. Or its heaven, depends on the player. There are no police... unless you want to be a vigilante? Be nice to others and they will be nice to you. Rob others and you won't stand a chance.
+                    </p>
+                </section>
+
+                <!-- Work in Progress / Info Panel -->
+                <section class="panel">
+                    <h2>Work in Progress</h2>
+                    <p class="wip-description">
+                        NeoCity is in active development. Expect frequent updates, changes, and restarts as we iterate.
+                    </p>
+                    <div class="status-checklist">
+                        <div class="status-item">
+                            <span class="status-icon">✓</span>
+                            <span>Core systems online</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-icon">⏳</span>
+                            <span>Safe zone development</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-icon">⏳</span>
+                            <span>Hunger system</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-icon">⏳</span>
+                            <span>Economy balancing</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-icon">⏳</span>
+                            <span>Knocked out system</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-icon">⏳</span>
+                            <span>Looting system</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-icon">⏳</span>
+                            <span>Level up system</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-icon">⏳</span>
+                            <span>Faction features</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Column -->
+            <div class="grid-column">
+                <!-- Big Error / Addon Collection Panel -->
+                <section class="panel error-panel">
+                    <h2>Avoid ERRORs — Install Addon Collection</h2>
+                    <div class="error-display">
+                        <span class="error-text" id="errorText">ERROR</span>
+                    </div>
+                    <p class="error-warning">
+                        <strong>IMPORTANT:</strong> Subscribe to the NeoCity addon collection or you'll see missing models, purple/black textures, and errors.
+                    </p>
+                    <a href="https://steamcommunity.com/workshop/" target="_blank" rel="noopener noreferrer" class="cta-button" id="addonButton">
+                        Open Required Addon Collection
+                    </a>
+                    <p class="error-note">
+                        Subscribe before joining to avoid errors.
+                    </p>
+                </section>
+
+                <!-- YouTube Player Panel -->
+                <section class="panel">
+                    <h2>NeoCity Trailer</h2>
+                    <div class="video-wrapper">
+                        <iframe 
+                            id="youtubePlayer"
+                            src="" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>NeoCity Loading Screen — Not affiliated with Facepunch</p>
+    </footer>
+
+    <script src="particles.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
