@@ -14,17 +14,17 @@
     let mouse = { x: null, y: null };
     let animationId = null;
     
-    // Configuration - optimized for performance
+    // Configuration - simplified with fewer nodes
     const config = {
-        particleCount: 50,        // Reduced for performance
+        particleCount: 20,        // Reduced to 20 nodes for simplicity
         particleColor: '#00c8ff', // Teal/cyan
         lineColor: '#00c8ff',
-        lineOpacity: 0.2,
-        lineDistance: 150,
-        particleSpeed: 0.3,
-        particleSize: 2,
+        lineOpacity: 0.5,        // Higher opacity for more visible connections
+        lineDistance: 250,       // Longer connection distance to compensate for fewer particles
+        particleSpeed: 0.8,       // Fast movement
+        particleSize: 4,         // Larger particles for better visibility
         mouseInteraction: true,
-        mouseRadius: 100
+        mouseRadius: 150          // Mouse interaction area
     };
     
     // Resize canvas to fill viewport
@@ -38,8 +38,9 @@
         constructor() {
             this.x = Math.random() * canvas.width;
             this.y = Math.random() * canvas.height;
-            this.vx = (Math.random() - 0.5) * config.particleSpeed;
-            this.vy = (Math.random() - 0.5) * config.particleSpeed;
+            // More varied initial velocities for active movement
+            this.vx = (Math.random() - 0.5) * config.particleSpeed * (0.5 + Math.random());
+            this.vy = (Math.random() - 0.5) * config.particleSpeed * (0.5 + Math.random());
             this.size = config.particleSize;
         }
         
@@ -48,7 +49,7 @@
             this.x += this.vx;
             this.y += this.vy;
             
-            // Mouse interaction (subtle repulsion)
+            // Mouse interaction (more active repulsion)
             if (config.mouseInteraction && mouse.x !== null && mouse.y !== null) {
                 const dx = mouse.x - this.x;
                 const dy = mouse.y - this.y;
@@ -57,8 +58,9 @@
                 if (distance < config.mouseRadius) {
                     const force = (config.mouseRadius - distance) / config.mouseRadius;
                     const angle = Math.atan2(dy, dx);
-                    this.vx -= Math.cos(angle) * force * 0.02;
-                    this.vy -= Math.sin(angle) * force * 0.02;
+                    // Stronger mouse interaction for more active response
+                    this.vx -= Math.cos(angle) * force * 0.05;
+                    this.vy -= Math.sin(angle) * force * 0.05;
                 }
             }
             
@@ -68,21 +70,28 @@
             if (this.y < 0) this.y = canvas.height;
             if (this.y > canvas.height) this.y = 0;
             
-            // Damping for smooth movement
-            this.vx *= 0.99;
-            this.vy *= 0.99;
+            // Less damping for more active movement
+            this.vx *= 0.995;
+            this.vy *= 0.995;
+            
+            // Add slight random variation for more organic movement
+            if (Math.random() < 0.1) {
+                this.vx += (Math.random() - 0.5) * 0.1;
+                this.vy += (Math.random() - 0.5) * 0.1;
+            }
         }
         
         draw() {
+            // Enhanced glow effect
+            ctx.shadowBlur = 15;
+            ctx.shadowColor = config.particleColor;
+            
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             ctx.fillStyle = config.particleColor;
             ctx.fill();
             
-            // Glow effect
-            ctx.shadowBlur = 10;
-            ctx.shadowColor = config.particleColor;
-            ctx.fill();
+            // Reset shadow
             ctx.shadowBlur = 0;
         }
     }
@@ -109,8 +118,11 @@
                     ctx.moveTo(particles[i].x, particles[i].y);
                     ctx.lineTo(particles[j].x, particles[j].y);
                     ctx.strokeStyle = `rgba(0, 200, 255, ${opacity})`;
-                    ctx.lineWidth = 1;
+                    ctx.lineWidth = 1.5; // Slightly thicker lines
+                    ctx.shadowBlur = 5;
+                    ctx.shadowColor = 'rgba(0, 200, 255, 0.5)';
                     ctx.stroke();
+                    ctx.shadowBlur = 0;
                 }
             }
         }

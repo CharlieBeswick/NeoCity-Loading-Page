@@ -85,15 +85,16 @@ body {
 
 /* Panel/Card Base Styles with RGB shifting borders */
 .panel {
-    background: var(--panel-bg);
+    background: rgba(21, 21, 32, 0.4); /* More translucent - was var(--panel-bg) */
+    backdrop-filter: blur(8px); /* Blur effect for better readability */
+    -webkit-backdrop-filter: blur(8px);
     border: 2px solid transparent;
     border-radius: 8px;
     padding: 12px;
     box-shadow: 
         0 2px 10px rgba(0, 0, 0, 0.3),
         0 0 0 1px rgba(0, 200, 255, 0.05),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05),
-        inset 0 0 0 2px var(--panel-bg);
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     overflow: hidden;
     display: flex;
@@ -103,7 +104,7 @@ body {
     isolation: isolate;
 }
 
-/* RGB Shifting Border with Traveling Pulse */
+/* RGB Shifting Border with Traveling Pulse - Border only */
 .panel::before {
     content: '';
     position: absolute;
@@ -122,31 +123,20 @@ body {
     background-size: 400% 400%;
     animation: rgbShift 8s ease infinite;
     z-index: -2;
-    opacity: 0.5;
+    opacity: 0.6;
+    /* Mask to show only border, not background */
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    padding: 2px;
 }
 
-/* Traveling light pulse along border */
-.panel::after {
-    content: '';
-    position: absolute;
-    inset: -2px;
-    border-radius: 10px;
-    background: conic-gradient(
-        from 0deg at 50% 50%,
-        transparent 0deg,
-        rgba(0, 200, 255, 0.8) 90deg,
-        transparent 180deg,
-        transparent 360deg
-    );
-    animation: borderPulse 3s linear infinite;
-    z-index: -1;
-    opacity: 0;
-    pointer-events: none;
-}
-
-.panel:hover::after {
-    opacity: 0.4;
-}
+/* Traveling light pulse removed - keeping only RGB border */
 
 @keyframes rgbShift {
     0%, 100% {
@@ -157,22 +147,7 @@ body {
     }
 }
 
-@keyframes borderPulse {
-    0% {
-        transform: rotate(0deg);
-        opacity: 0;
-    }
-    10% {
-        opacity: 0.6;
-    }
-    90% {
-        opacity: 0.6;
-    }
-    100% {
-        transform: rotate(360deg);
-        opacity: 0;
-    }
-}
+/* borderPulse animation removed */
 
 .panel:hover {
     box-shadow: 
@@ -386,7 +361,9 @@ h3.section-subheading {
 .error-panel {
     text-align: center;
     border-color: rgba(255, 51, 51, 0.3);
-    background: rgba(20, 10, 10, 0.5);
+    background: rgba(20, 10, 10, 0.3); /* More translucent */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     flex: 1;
     min-height: 0;
 }
